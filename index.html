@@ -1,20 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Web-API Quiz</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Quiz!</title>
+
+  <link rel="stylesheet" href="./assets/css/styles.css" />
 </head>
+
 <body>
-    
+  <div id="container">
 
+    <div class="scores">
+      <a href="highscores.html">View Highscores</a>
+    </div>
 
+    <div class="timer">Time: <span id="time">0</span></div>
 
+    <div class="wrapper">
+      <div id="start-screen" class="start">
+        <h1>Quiz! Challenge</h1>
+        <p> This is a multiple choose JavaScript Quiz. For each question you have 3 options to choose from. If you get any of them wrong,you'll get some time deducted from you.have fun!</p>
+        <button id="start">Start Quiz</button>
+      </div>
 
+      <div id="question" class="hide">
 
+      </div>
 
+      <div id="choices" class="hide">
+        <div class="choice" id="A" onclick="checkAnswer('A')"></div>
+        <div class="choice" id="B" onclick="checkAnswer('B')"></div>
+        <div class="choice" id="C" onclick="checkAnswer('C')"></div>
 
+      </div>
+      <div id="progress"></div>
 
+      <div id="end-screen" class="hide">
+        <!-- End screen content -->
+        <!-- Display the final score -->
+        <p>
+          <!-- `input` field for the user initials -->
+          <button id="submit">Submit</button>
+        </p>
+      </div>
+
+      <!-- Message to flash "Correct" or "Incorrect" -->
+    </div>
+
+    <div id="results"></div>
+
+  </div>
+  <script src="./assets/js/logic.js"></script>
 </body>
+
 </html>
