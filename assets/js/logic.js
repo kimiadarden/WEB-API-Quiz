@@ -78,8 +78,8 @@ var questions = [
 ];
 
 let highScoreArray = {
-  val:0,
-  name:""
+  val: 0,
+  name: ""
 };
 let quizTakerName = "";
 
@@ -176,7 +176,7 @@ function checkAnswer(answer) {
 // answer is correct
 function answerIsCorrect() {
   document.getElementById(runningQuestion);
-  resultsContainer.innerHTML += "<p> correct"+  +"</p>";
+  resultsContainer.innerHTML += "<p> correct" + +"</p>";
 
 }
 
@@ -184,10 +184,10 @@ function answerIsCorrect() {
 function answerIsWrong() {
   document.getElementById(runningQuestion);
 
-  time=time-5;
+  time = time - 5;
 
-  if(time<0){
-    time==0;
+  if (time < 0) {
+    time == 0;
   }
 }
 
@@ -209,18 +209,16 @@ function quizEnd() {
 
 
   submitEl.addEventListener("click", function (event) {
-      
 
-      let kimi  = {
-        useInitial: document.getElementById('name').value,
-        userScore: scorePer 
-  }
+    event.preventDefault();
 
-  console.log(kimi);
+    var user = { firstName: nameInput.value.trim() };
 
-    // event.preventDefault();
+    user= localStorage.setItem("user");
 
-    
+    var lastUser = localStorage.getItem("user");
+
+   //go to console log--->go to application---> you can see the name 
 
   });
 
@@ -239,14 +237,14 @@ function clockTick(val) {
 
     timeEl.textContent = time;
 
-    
+
     //**********print out the rrsult */
-    
+
     //this is a method call clearInterval to clear the resource
     if (time <= 0) {
       quizEnd();
       clearInterval(timerInterval);
-      scoreRender();   
+      scoreRender();
     }
     //every second
   }, 1000);
@@ -276,6 +274,6 @@ submitBtn.onclick = saveHighscore;
 // user clicks button to start quiz
 startBtn.onclick = startQuiz;
 
-function myHighScoreClick(){
+function myHighScoreClick() {
   console.log("hello");
 }
