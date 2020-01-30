@@ -22,7 +22,8 @@
     <div class="wrapper">
       <div id="start-screen" class="start">
         <h1>Quiz! Challenge</h1>
-        <p> This is a multiple choose JavaScript Quiz. For each question you have 3 options to choose from. If you get any of them wrong,you'll get some time deducted from you.have fun!</p>
+        <p> This is a multiple choose JavaScript Quiz. For each question you have 3 options to choose from. If you get
+          any of them wrong,you'll get some time deducted from you.have fun!</p>
         <button id="start">Start Quiz</button>
       </div>
 
@@ -41,16 +42,26 @@
       <div id="end-screen" class="hide">
         <!-- End screen content -->
         <!-- Display the final score -->
-        <p>
+        <p> "you are done "
           <!-- `input` field for the user initials -->
           <button id="submit">Submit</button>
         </p>
       </div>
 
       <!-- Message to flash "Correct" or "Incorrect" -->
-    </div>
+      
+      <div id="results" class="hide">
+        
+        <h3>All done!</h3>
+        <form>
+          <h4 id="response"></h4>
+          <input placeholder="initials" id="name" />
+          <button id="submit">Submit</button>
+        </form>
+      </div>
+    
 
-    <div id="results"></div>
+    </div>
 
   </div>
   <script src="./assets/js/logic.js"></script>
