@@ -77,7 +77,11 @@ var questions = [
   // }
 ];
 
-
+let highScoreArray = {
+  val:0,
+  name:""
+};
+let quizTakerName = "";
 
 const lastQuestion = questions.length - 1;
 let runningQuestion = 0;
@@ -102,17 +106,13 @@ var questionsEl = document.getElementById('question');
 var resultsContainer = document.getElementById('results');
 var submitBtn = document.getElementById("submit");
 var startBtn = document.getElementById("start");
-var progress = document.getElementById("progress");
 
-var endScreen = document.getElementById("end-screen");
 
 var a = document.getElementById("A");
 var b = document.getElementById("B");
 var c = document.getElementById("C");
-
 var submitEl = document.querySelector("#submit");
 var nameInput = document.querySelector("#name");
-var submissionResponseEl = document.querySelector("#response");
 
 
 
@@ -176,22 +176,27 @@ function checkAnswer(answer) {
 // answer is correct
 function answerIsCorrect() {
   document.getElementById(runningQuestion);
-  // resultsContainer.innerHTML += "<p> correct"+  +"</p>";
+  resultsContainer.innerHTML += "<p> correct"+  +"</p>";
 
 }
 
 // answer is Wrong
 function answerIsWrong() {
   document.getElementById(runningQuestion);
+
+  time=time-5;
+
+  if(time<0){
+    time==0;
+  }
 }
 
 // score render
 function scoreRender() {
 
-
   resultsContainer.style.display = "block";
 
-  // calculate the amount of question from 100
+  // calculate the amount of scores from 100
   var scorePer = (score * 10);
 
   resultsContainer.innerHTML += "<p> Your Final result is :" + " " + scorePer + " " + "  out of 100 point in total!</p>";
@@ -204,14 +209,18 @@ function quizEnd() {
 
 
   submitEl.addEventListener("click", function (event) {
-    event.preventDefault();
+      
 
-    // var kimi= nameInput;
-    // alert(kimi);
+      let kimi  = {
+        useInitial: document.getElementById('name').value,
+        userScore: scorePer 
+  }
 
-    //   var kim = [nameInput, scorePer]
+  console.log(kimi);
 
-    //   alert(kim);
+    // event.preventDefault();
+
+    
 
   });
 
@@ -222,28 +231,22 @@ function quizEnd() {
 
 
 
-function clockTick() {
+function clockTick(val) {
+
 
   var timerInterval = setInterval(function () {
-    // time--;
-
-    // timeEl.textContent = time;
-
-    if (answerIsCorrect) {
-      time --;
-    }
-    else{
-     time-=5;
-     }
+    time--;
 
     timeEl.textContent = time;
 
+    
+    //**********print out the rrsult */
+    
     //this is a method call clearInterval to clear the resource
     if (time <= 0) {
       quizEnd();
       clearInterval(timerInterval);
-
-
+      scoreRender();   
     }
     //every second
   }, 1000);
@@ -258,7 +261,9 @@ function clockTick() {
   [ ] Redirect to high scores page
    */
 function saveHighscore() {
-
+  console.log("im here");
+  console.log(submitBtn);
+  console.log("im here");
   /*
     @TODO: write your function code here
   */
@@ -270,3 +275,7 @@ submitBtn.onclick = saveHighscore;
 
 // user clicks button to start quiz
 startBtn.onclick = startQuiz;
+
+function myHighScoreClick(){
+  console.log("hello");
+}

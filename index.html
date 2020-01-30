@@ -22,14 +22,12 @@
     <div class="wrapper">
       <div id="start-screen" class="start">
         <h1>Quiz! Challenge</h1>
-        <p> This is a multiple choose JavaScript Quiz. For each question you have 3 options to choose from. If you get
-          any of them wrong,you'll get some time deducted from you.have fun!</p>
+        <p> This is a multiple choose JavaScript Quiz.You have 15 seconds for each question and 3 answers to choose from. If you get
+          any of the questions wrong,you'll get 2 seconds deducted from your remaining time.This quiz will end if you run out of time or when all the questions are answered. have fun!</p>
         <button id="start">Start Quiz</button>
       </div>
 
-      <div id="question" class="hide">
-
-      </div>
+      <div id="question" class="hide"></div>
 
       <div id="choices" class="hide">
         <div class="choice" id="A" onclick="checkAnswer('A')"></div>
@@ -37,29 +35,16 @@
         <div class="choice" id="C" onclick="checkAnswer('C')"></div>
 
       </div>
-      <div id="progress"></div>
 
-      <div id="end-screen" class="hide">
-        <!-- End screen content -->
-        <!-- Display the final score -->
-        <p> "you are done "
-          <!-- `input` field for the user initials -->
-          <button id="submit">Submit</button>
-        </p>
-      </div>
-
-      <!-- Message to flash "Correct" or "Incorrect" -->
-      
       <div id="results" class="hide">
-        
+
         <h3>All done!</h3>
         <form>
-          <h4 id="response"></h4>
-          <input placeholder="initials" id="name" />
+          <input placeholder="initials" id="name" type="text"/>
           <button id="submit">Submit</button>
         </form>
       </div>
-    
+
 
     </div>
 
