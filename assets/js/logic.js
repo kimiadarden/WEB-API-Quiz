@@ -24,57 +24,57 @@ var questions = [
     c: "toLocaleString()",
     correct: "A"
   },
-  // {
-  //   question: "4) Which of the following function of Array object returns the last (greatest) index of an element within the array equal to the specified value, or -1 if none is found?",
-  //   a: "indexOf()",
-  //   b: "join()",
-  //   c: "lastIndexOf()",
-  //   correct: "C"
-  // },
-  // {
-  //   question: "5) Which of the following function of Array object removes the first element from an array and returns that element?",
-  //   a: "reverse()",
-  //   b: "shift()",
-  //   c: "slice()",
-  //   correct: "B"
-  // },
+  {
+    question: "4) Which of the following function of Array object returns the last (greatest) index of an element within the array equal to the specified value, or -1 if none is found?",
+    a: "indexOf()",
+    b: "join()",
+    c: "lastIndexOf()",
+    correct: "C"
+  },
+  {
+    question: "5) Which of the following function of Array object removes the first element from an array and returns that element?",
+    a: "reverse()",
+    b: "shift()",
+    c: "slice()",
+    correct: "B"
+  },
 
-  // {
-  //   question: "6) How to write an IF statement for executing some code if i is NOT equal to 5?",
-  //   a: "if i <> 5",
-  //   b: "if i =! 5 then",
-  //   c: "if (i != 5)  ",
-  //   correct: "C"
-  // },
-  // {
-  //   question: "7) What is the method in JavaScript used to remove the whitespace at the beginning and end of any string ?",
-  //   a: "strip()",
-  //   b: "trim()",
-  //   c: "stripped()",
-  //   correct: "B"
-  // },
+  {
+    question: "6) How to write an IF statement for executing some code if i is NOT equal to 5?",
+    a: "if i <> 5",
+    b: "if i =! 5 then",
+    c: "if (i != 5)  ",
+    correct: "C"
+  },
+  {
+    question: "7) What is the method in JavaScript used to remove the whitespace at the beginning and end of any string ?",
+    a: "strip()",
+    b: "trim()",
+    c: "stripped()",
+    correct: "B"
+  },
 
-  // {
-  //   question: "8) How to write an IF statement in JavaScript?",
-  //   a: "if(i==7)",
-  //   b: "if i=7",
-  //   c: "if i=7 then",
-  //   correct: "A"
-  // },
-  // {
-  //   question: "9) Which event occurs when the user clicks on an HTML element?",
-  //   a: "onchange",
-  //   b: "onmouseclick",
-  //   c: "onclick",
-  //   correct: "C"
-  // },
-  // {
-  //   question: "10) Which function of an Array object calls a function for each element in the array? ",
-  //   a: "forEach()",
-  //   b: "every()",
-  //   c: "each()",
-  //   correct: "A"
-  // }
+  {
+    question: "8) How to write an IF statement in JavaScript?",
+    a: "if(i==7)",
+    b: "if i=7",
+    c: "if i=7 then",
+    correct: "A"
+  },
+  {
+    question: "9) Which event occurs when the user clicks on an HTML element?",
+    a: "onchange",
+    b: "onmouseclick",
+    c: "onclick",
+    correct: "C"
+  },
+  {
+    question: "10) Which function of an Array object calls a function for each element in the array? ",
+    a: "forEach()",
+    b: "every()",
+    c: "each()",
+    correct: "A"
+  }
 ];
 
 let highScoreArray = {
@@ -90,7 +90,7 @@ let TIMER;
 let score = 0;
 
 // variables to keep track of quiz state
-var time = questions.length * 5;
+var time = questions.length * 15;
 var currentQuestionIndex = 0;
 var timerId;
 
@@ -117,23 +117,40 @@ var nameInput = document.querySelector("#name");
 
 
 document.getElementById('results').addEventListener("click", function (event) {
-
   event.preventDefault();
 
   if (event.target.tagName.toLowerCase() === 'button') {
     var userInitial = document.getElementById("name").value;
-  
-    //  var user = { firstName: nameInput.value.trim() };
-    console.log( userInitial);
-  
+    
     localStorage.setItem("name", userInitial);
   
-    // var lastUser = localStorage.getItem("user");
+    var nameInitial= userInitial;
+    var totalScore = (score * 10);
+  
+  scoreHigh= localStorage.setItem("userscore", totalScore);
+
+
+        var userInfo = {
+              a:  totalScore,
+              b: nameInitial,
+          }    
+        
+         var ab = [];
+         var get =  JSON.parse(localStorage.getItem('userInfo'));
+         ab = [get];
+         ab.push(userInfo); 
+        
+         localStorage.setItem('userInfo', JSON.stringify(ab));
+        
+         console.log(JSON.stringify(ab));
+
 
     }
 
 
 });
+
+   
 
 
 //Function to start the quiz
@@ -189,7 +206,8 @@ function checkAnswer(answer) {
     // end the quiz and show the score
     quizEnd();
 
-    // clearInterval(TIMER);  ***************************************
+    clearInterval(TIMER);
+    // scoreRender();
   }
 }
 
@@ -203,12 +221,11 @@ function answerIsCorrect() {
 function answerIsWrong() {
   document.getElementById(runningQuestion);
 
-  time = time - 2;
+  time = time - 5;
 
   if (time <= 0) {      
     clearInterval(timerInterval);
     time==0
-//*****************************************************************************
   }
 }
 
@@ -219,6 +236,8 @@ function scoreRender() {
 
   // calculate the amount of scores from 100
   var scorePer = (score * 10);
+
+  
   resultsContainer.innerHTML += "<p> Your Final result is :" + " " + scorePer + " " + "  out of 100 point in total!</p>";
   
   scoreHigh= localStorage.setItem("userscore", scorePer);
@@ -260,9 +279,8 @@ function clockTick(val) {
   [ ] Redirect to high scores page
    */
 function saveHighscore() {
-  console.log("im here");
-  console.log(submitBtn);
-  console.log("im here");
+
+
   /*
     @TODO: write your function code here
   */
@@ -270,7 +288,7 @@ function saveHighscore() {
 }
 
 // user clicks button to submit initials
-// submitBtn.onclick = saveHighscore;
+submitEl.onclick = saveHighscore;
 
 // user clicks button to start quiz
 startBtn.onclick = startQuiz;

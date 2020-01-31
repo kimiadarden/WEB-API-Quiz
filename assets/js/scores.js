@@ -13,6 +13,7 @@
  */
 function printHighscores() {
   
+
   /*
     @TODO: write your function code here
   */
