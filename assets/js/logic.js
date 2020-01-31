@@ -104,7 +104,6 @@ var answers = document.getElementById("choices");
 
 var questionsEl = document.getElementById('question');
 var resultsContainer = document.getElementById('results');
-var submitBtn = document.getElementById("submit");
 var startBtn = document.getElementById("start");
 
 
@@ -115,6 +114,26 @@ var submitEl = document.querySelector("#submit");
 var nameInput = document.querySelector("#name");
 
 
+
+
+document.getElementById('results').addEventListener("click", function (event) {
+
+  event.preventDefault();
+
+  if (event.target.tagName.toLowerCase() === 'button') {
+    var userInitial = document.getElementById("name").value;
+  
+    //  var user = { firstName: nameInput.value.trim() };
+    console.log( userInitial);
+  
+    localStorage.setItem("name", userInitial);
+  
+    // var lastUser = localStorage.getItem("user");
+
+    }
+
+
+});
 
 
 //Function to start the quiz
@@ -137,6 +156,8 @@ function startQuiz() {
   getQuestion();
 
 }
+
+
 
 
 //Function to display next question
@@ -168,15 +189,13 @@ function checkAnswer(answer) {
     // end the quiz and show the score
     quizEnd();
 
-    clearInterval(TIMER);
-    scoreRender();
+    // clearInterval(TIMER);  ***************************************
   }
 }
 
 // answer is correct
 function answerIsCorrect() {
   document.getElementById(runningQuestion);
-  resultsContainer.innerHTML += "<p> correct" + +"</p>";
 
 }
 
@@ -184,10 +203,12 @@ function answerIsCorrect() {
 function answerIsWrong() {
   document.getElementById(runningQuestion);
 
-  time = time - 5;
+  time = time - 2;
 
-  if (time < 0) {
-    time == 0;
+  if (time <= 0) {      
+    clearInterval(timerInterval);
+    time==0
+//*****************************************************************************
   }
 }
 
@@ -198,34 +219,18 @@ function scoreRender() {
 
   // calculate the amount of scores from 100
   var scorePer = (score * 10);
-
   resultsContainer.innerHTML += "<p> Your Final result is :" + " " + scorePer + " " + "  out of 100 point in total!</p>";
+  
+  scoreHigh= localStorage.setItem("userscore", scorePer);
+
 }
 
 function quizEnd() {
   questionsEl.setAttribute("class", "hide");
   answers.setAttribute("class", "hide");
   resultsContainer.removeAttribute("class");
-
-
-  submitEl.addEventListener("click", function (event) {
-
-    event.preventDefault();
-
-    var user = { firstName: nameInput.value.trim() };
-
-    user= localStorage.setItem("user");
-
-    var lastUser = localStorage.getItem("user");
-
-   //go to console log--->go to application---> you can see the name 
-
-  });
-
-
+  scoreRender();
 }
-
-
 
 
 
@@ -237,14 +242,10 @@ function clockTick(val) {
 
     timeEl.textContent = time;
 
-
-    //**********print out the rrsult */
-
     //this is a method call clearInterval to clear the resource
     if (time <= 0) {
       quizEnd();
       clearInterval(timerInterval);
-      scoreRender();
     }
     //every second
   }, 1000);
@@ -269,7 +270,7 @@ function saveHighscore() {
 }
 
 // user clicks button to submit initials
-submitBtn.onclick = saveHighscore;
+// submitBtn.onclick = saveHighscore;
 
 // user clicks button to start quiz
 startBtn.onclick = startQuiz;
