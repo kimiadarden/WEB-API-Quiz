@@ -121,36 +121,42 @@ document.getElementById('results').addEventListener("click", function (event) {
 
   if (event.target.tagName.toLowerCase() === 'button') {
     var userInitial = document.getElementById("name").value;
-    
+
     localStorage.setItem("name", userInitial);
-  
-    var nameInitial= userInitial;
+
+
+
+    
+    var nameInitial = userInitial;
     var totalScore = (score * 10);
-  
-  scoreHigh= localStorage.setItem("userscore", totalScore);
+
+    scoreHigh = localStorage.setItem("userscore", totalScore);
 
 
-        var userInfo = {
-              a:  totalScore,
-              b: nameInitial,
-          }    
-        
-         var ab = [];
-         var get =  JSON.parse(localStorage.getItem('userInfo'));
-         ab = [get];
-         ab.push(userInfo); 
-        
-         localStorage.setItem('userInfo', JSON.stringify(ab));
-        
-         console.log(JSON.stringify(ab));
-
-
+    var userInfo = {
+      totalScore,
+      nameInitial,
     }
+
+    var ab = [];
+    var get = JSON.parse(localStorage.getItem('userInfo'));
+
+
+    ab = [get];
+    ab.push(userInfo);
+
+    localStorage.setItem('userInfo', JSON.stringify(ab));
+
+    console.log(JSON.stringify(ab));
+
+    
+
+  }
 
 
 });
 
-   
+
 
 
 //Function to start the quiz
@@ -223,9 +229,9 @@ function answerIsWrong() {
 
   time = time - 5;
 
-  if (time <= 0) {      
+  if (time <= 0) {
     clearInterval(timerInterval);
-    time==0
+    time == 0
   }
 }
 
@@ -237,10 +243,10 @@ function scoreRender() {
   // calculate the amount of scores from 100
   var scorePer = (score * 10);
 
-  
+
   resultsContainer.innerHTML += "<p> Your Final result is :" + " " + scorePer + " " + "  out of 100 point in total!</p>";
-  
-  scoreHigh= localStorage.setItem("userscore", scorePer);
+
+  scoreHigh = localStorage.setItem("userscore", scorePer);
 
 }
 

@@ -12,8 +12,16 @@
  * @see https://www.w3schools.com/jsref/met_document_createelement.asp
  */
 function printHighscores() {
-  
 
+  // var para = document.createElement("P");
+  // para.innerHTML = "This is a paragraph.";
+  // document.getElementById("highscores").appendChild();
+
+
+  document.getElementById("initialP").innerHTML = localStorage.getItem("name");
+  document.getElementById("scoreP").innerHTML = localStorage.getItem("userscore");
+
+  
   /*
     @TODO: write your function code here
   */
