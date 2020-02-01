@@ -1,4 +1,4 @@
-// variable for questions
+// varikle for questions
 var questions = [
 
   {
@@ -89,12 +89,12 @@ let count = 0;
 let TIMER;
 let score = 0;
 
-// variables to keep track of quiz state
+// varikles to keep track of quiz state
 var time = questions.length * 15;
 var currentQuestionIndex = 0;
 var timerId;
 
-//Variables to reference DOM elements
+//Varikles to reference DOM elements
 
 var question = document.getElementById("question");
 var timerEl = document.getElementById("time");
@@ -103,59 +103,74 @@ var timeEl = document.querySelector(".timer");
 var answers = document.getElementById("choices");
 
 var questionsEl = document.getElementById('question');
-var resultsContainer = document.getElementById('results');
 var startBtn = document.getElementById("start");
-
 
 var a = document.getElementById("A");
 var b = document.getElementById("B");
 var c = document.getElementById("C");
-var submitEl = document.querySelector("#submit");
-var nameInput = document.querySelector("#name");
+
+// var submitEl = document.querySelector("#submit");
+var initialInput = document.querySelector("#name");
+var resultsContainer = document.getElementById('results');
+var initialList = document.querySelector("#initial-list");
+
+
+var initial = [];
+init();
+
+function rendorinitial() {
+  initialList.innerHTML = "";
+
+  for (var i = 0; i < initial.length; i++) {
+    var initialDo = initial[i];
+
+    var li = document.createElement("li");
+    li.textContent = initialDo;
+    li.setAttribute("data-index", i);
+
+    initialList.appendChild(li);
+  }
+}
 
 
 
 
-document.getElementById('results').addEventListener("click", function (event) {
-  event.preventDefault();
+function init() {
+  var storedInitial = JSON.parse(localStorage.getItem("initial"));
 
-  if (event.target.tagName.toLowerCase() === 'button') {
-    var userInitial = document.getElementById("name").value;
-
-    localStorage.setItem("name", userInitial);
-
-
-
-    
-    var nameInitial = userInitial;
-    var totalScore = (score * 10);
-
-    scoreHigh = localStorage.setItem("userscore", totalScore);
-
-
-    var userInfo = {
-      totalScore,
-      nameInitial,
-    }
-
-    var ab = [];
-    var get = JSON.parse(localStorage.getItem('userInfo'));
-
-
-    ab = [get];
-    ab.push(userInfo);
-
-    localStorage.setItem('userInfo', JSON.stringify(ab));
-
-    console.log(JSON.stringify(ab));
-
-    
-
+  if (storedInitial !== null) {
+    initial = storedInitial;
   }
 
+  rendorinitial();
+
+}
+
+function storeInitial() {
+  localStorage.setItem("initial", JSON.stringify(initial));
+}
+
+console.log(JSON.stringify(initial));
+
+resultsContainer.addEventListener("submit", function(event) {
+  event.preventDefault();
+  var initialText = document.getElementById("name").value.trim();
+
+  initial.push(initialText);
+   initialInput.value = "";
+
+  storeInitial();
+
+  rendorinitial();
 
 });
 
+    
+    
+    var totalScore = (score * 10);
+    
+    localStorage.setItem("userscore", totalScore);
+  
 
 
 
@@ -294,11 +309,10 @@ function saveHighscore() {
 }
 
 // user clicks button to submit initials
-submitEl.onclick = saveHighscore;
+// submitEl.onclick = saveHighscore;
 
 // user clicks button to start quiz
 startBtn.onclick = startQuiz;
 
-function myHighScoreClick() {
-  console.log("hello");
-}
+// function myHighScoreClick() {
+// }

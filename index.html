@@ -15,6 +15,8 @@
 
     <div class="scores">
 
+  <ul id="initial-list"  class="hide"></ul>
+
       <a href="highscores.html">View Highscores  </a>
     </div>
 
@@ -34,17 +36,18 @@
         <div class="choice" id="A" onclick="checkAnswer('A')"></div>
         <div class="choice" id="B" onclick="checkAnswer('B')"></div>
         <div class="choice" id="C" onclick="checkAnswer('C')"></div>
-
       </div>
 
-      <div id="results" class="hide">
-
+      <div >
+        <form id="results" method="POST" class="hide">
         <h3>All done!</h3>
-        <div>
-          <input placeholder="initials" id="name" type="text"/>
+  
+          <input type="text" placeholder="initial"  id="name"/>
           <button id="submit" >Submit</button>
-        </div>
+  
+        </form>
       </div>
+
 
 
     </div>

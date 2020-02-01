@@ -18,7 +18,8 @@ function printHighscores() {
   // document.getElementById("highscores").appendChild();
 
 
-  document.getElementById("initialP").innerHTML = localStorage.getItem("name");
+  document.getElementById("initialP").innerHTML = localStorage.getItem("initial");
+  
   document.getElementById("scoreP").innerHTML = localStorage.getItem("userscore");
 
   
@@ -40,6 +41,9 @@ function printHighscores() {
  * @see https://www.w3schools.com/jsref/prop_win_localstorage.asp
  */
 function clearHighscores() {
+
+  localStorage.clear();
+
 
   /*
     @TODO: write the rest of your function code here
