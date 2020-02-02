@@ -133,8 +133,6 @@ function rendorinitial() {
 }
 
 
-
-
 function init() {
   var storedInitial = JSON.parse(localStorage.getItem("initial"));
 
