@@ -1,41 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Highscores</title>
 
-    <link rel="stylesheet" href="./assets/css/styles.css" />
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Highscores</title>
 
-  <body>
-    <div class="wrapper">
-      <h1>Highscores</h1>
-      <div id="highscores">
+  <link rel="stylesheet" href="./assets/css/styles.css" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+</head>
+
+<body>
+  <div class="wrapper">
+    <h1>Highscores</h1>
+    <div id="highscores">
+<br>
+<br>
+
+      <div class="container" >
+        <div class="row">
+          <div class="col-sm" class="text-center">
+            User's Initial
+          </div>
+          <div class="col-sm" class="text-center">
+            User's Score </div>
+
+        </div>
+        <div class="row">
+          <div class="col-sm" id="initial-list">
+          </div>
+          <div class="col-sm" id="initial-score">
+             </div>
+
+        </div>
+
+      </div>
 
 
-<table style="width:60%" >
+
+      <!-- <table style="width:60%" >
 
          <tr>
             <th  >user's name and Score</th>
-            <!-- <th>Score</th>  -->
-          </tr>
-          <tr>
-            <td id="initial-list"></td>
-            <!-- <td id="scoreP"></td> -->
-          </tr>
-        </table> 
-          
-      </div>
-<br>
-<br>
+            <th>Score</th>  
+      </tr>
+      <tr>
+        <td id="initial-list"></td>
+         <td id="scoreP"></td> 
+      </tr>
+      </table> -->
 
-      <a href="index.html"><button>Go Back</button></a>
-      <button onclick="myHighScoreClick()" id="clear">Clear Highscores</button>
     </div>
+    <br>
+    <br>
 
-    <script src="./assets/js/scores.js"></script>
-    <script src="./assets/js/logic.js"></script>
-  </body>
+    <a href="index.html"><button>Go Back</button></a>
+    <button onclick="myHighScoreClick()" id="clear">Clear Highscores</button>
+  </div>
+
+  <script src="./assets/js/scores.js"></script>
+  <script src="./assets/js/logic.js"></script>
+</body>
+
 </html>

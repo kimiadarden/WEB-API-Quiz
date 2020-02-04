@@ -77,10 +77,7 @@ var questions = [
   }
 ];
 
-let highScoreArray = {
-  val: 0,
-  name: ""
-};
+
 let quizTakerName = "";
 
 const lastQuestion = questions.length - 1;
@@ -113,35 +110,56 @@ var c = document.getElementById("C");
 var initialInput = document.querySelector("#name");
 var resultsContainer = document.getElementById('results');
 var initialList = document.querySelector("#initial-list");
+var initialScore = document.querySelector("initial-score")
 
 
 var initial = [];
 init();
 
-function rendorinitial() {
-  initialList.innerHTML = "";
 
-  for (var i = 0; i < initial.length; i++) {
-    var initialDo = initial[i];
 
-    var li = document.createElement("li");
-    li.textContent = initialDo;
-    li.setAttribute("data-index", i);
-
-    initialList.appendChild(li);
-  }
-}
+//this prints the initialized highScoreArray
 
 function storage() {
   var highScoreArray = JSON.parse(localStorage.getItem('highScores')) || []
 
-  var player =  document.getElementById("name").value.trim();
+  var player = document.getElementById("name").value.trim();
 
-  highScoreArray.push({player, score})
+  highScoreArray.push({ player, score })
 
   localStorage.setItem('highScores', JSON.stringify(highScoreArray))
+  rendorinitial()
 
 }
+
+function rendorinitial() {
+
+
+  var highScores = JSON.parse(localStorage.getItem('highScores'))
+  console.log(highScores)
+  if (highScores) {
+    // do the loop and print HTML to page
+    for (var i = 0; i < highScores.length; i++) {
+      var li = document.createElement("ul");
+      var liScore=document.createElement("ul");
+      
+      li.textContent = highScores[i].player;
+      liScore.textContent = highScores[i].score;
+
+      initialList.appendChild(li);
+      // initialScore.appendChild(lik);
+    }
+  } else {
+    // print no high scores found
+  }
+
+}
+
+
+
+
+
+
 
 function init() {
   var storedInitial = JSON.parse(localStorage.getItem("initial"));
@@ -160,27 +178,27 @@ function storeInitial() {
 
 console.log(JSON.stringify(initial));
 
-resultsContainer.addEventListener("submit", function(event) {
+resultsContainer.addEventListener("submit", function (event) {
   event.preventDefault();
   var initialText = document.getElementById("name").value.trim();
 
   initial.push(initialText);
-   initialInput.value = "";
+  initialInput.value = "";
 
 
-   
-   storage();
+
+  storage();
   storeInitial();
   rendorinitial();
 
 });
 
-    
-    
-    var totalScore = (score * 10);
-    
-    localStorage.setItem("userscore", totalScore);
-  
+
+
+var totalScore = (score * 10);
+
+localStorage.setItem("userscore", totalScore);
+
 
 
 
