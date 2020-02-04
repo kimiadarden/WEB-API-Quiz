@@ -18,9 +18,9 @@ function printHighscores() {
   // document.getElementById("highscores").appendChild();
 
 
-  document.getElementById("initialP").innerHTML = localStorage.getItem("initial");
+  // document.getElementById("initialP").innerHTML = localStorage.getItem("initial");
   
-  document.getElementById("scoreP").innerHTML = localStorage.getItem("userscore");
+  // document.getElementById("scoreP").innerHTML = localStorage.getItem("userscore");
 
   
   /*
