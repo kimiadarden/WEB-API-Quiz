@@ -1,4 +1,4 @@
-// an array of all the variable 
+// an array of all the variable kimi
 var questions = [
 
   {
@@ -89,12 +89,12 @@ let count = 0;
 let TIMER;
 let score = 0;
 
-// Var to keep track of quiz state
+// varikles to keep track of quiz state
 var time = questions.length * 15;
 var currentQuestionIndex = 0;
 var timerId;
 
-//Var to reference DOM elements
+//Varikles to reference DOM elements
 
 var question = document.getElementById("question");
 var timerEl = document.getElementById("time");
@@ -118,44 +118,24 @@ var initialList = document.querySelector("#initial-list");
 var initial = [];
 init();
 
-// function rendorinitial() {
-//   initialList.innerHTML = "";
-
-//   for (var i = 0; i < initial.length; i++) {
-//     var initialDo = initial[i];
-
-//     var li = document.createElement("li");
-//     li.textContent = initialDo;
-//     li.setAttribute("data-index", i);
-
-//     initialList.appendChild(li);
-//   }
-// }
-
-
 function rendorinitial() {
   initialList.innerHTML = "";
 
-  for (var i = 0; i < (JSON.stringify(highScoreArray)).length; i++) {
-    var kim = (JSON.stringify(highScoreArray))[i];
-    var initialDo = (JSON.stringify(highScoreArray))[i];
+  for (var i = 0; i < initial.length; i++) {
+    var initialDo = initial[i];
 
     var li = document.createElement("li");
     li.textContent = initialDo;
     li.setAttribute("data-index", i);
 
     initialList.appendChild(li);
-    
   }
 }
-
 
 function storage() {
   var highScoreArray = JSON.parse(localStorage.getItem('highScores')) || []
 
-
-  var player = document.getElementById("name").value.trim()
-
+  var player =  document.getElementById("name").value.trim();
 
   highScoreArray.push({player, score})
 
@@ -166,7 +146,9 @@ function storage() {
 function init() {
   var storedInitial = JSON.parse(localStorage.getItem("initial"));
 
+  if (storedInitial !== null) {
     initial = storedInitial;
+  }
 
   rendorinitial();
 
